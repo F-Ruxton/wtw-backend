@@ -1,10 +1,9 @@
 const bodyParser = require('body-parser');
 const cors       = require('cors');
-const _          = require('lodash/fp');
-const config     = require('./config');
+const config     = require('../config');
 
 const corsConfig = {
-  origin: ['http://localhost:' + config.PORT],
+  origin: ['http://localhost:' + config.CONSTANTS.PORT],
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
 };

@@ -1,9 +1,9 @@
 const _          = require('lodash/fp');
 const cloudinary = require('cloudinary');
-const config     = require('../../../config/cloudinary');
+const config     = require('../../config');
 const constants  = require('./contants');
 
-cloudinary.config(config);
+cloudinary.config(config.CLOUDINARY);
 
 const api = cloudinary.v2.api;
 
@@ -20,9 +20,9 @@ const _resources_by_tag = (options, cb) => {
 const _resources_by_ids = (options, cb) => {
   const public_ids = _.get('public_ids', options);
 
-  return !_.isEmpty(public_ids)
-    ? api.resources_by_ids(public_ids, options, cb)
-    : cb(undefined, { result: 'no public ids sent' });
+  return _.isEmpty(public_ids)
+    ? cb(undefined, { result: 'no public ids sent' })
+    : api.resources_by_ids(public_ids, options, cb);
 };
 
 const _resources_by_context = (options, cb) => api.resources_by_context(options, cb);

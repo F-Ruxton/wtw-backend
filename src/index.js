@@ -1,9 +1,9 @@
 const express    = require('express');
-const config     = require('./src/config');
-const middleware = require('./src/middleware');
-const apis       = require('./src/apis');
+const config     = require('./config');
+const middleware = require('./middleware');
+const apis       = require('./apis');
 
-const PORT = config.CONSTANTS.PORT;
+const PORT = process.env.PORT || config.CONSTANTS.PORT;
 const app  = express();
 
 middleware.install(app);
